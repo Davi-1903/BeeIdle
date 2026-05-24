@@ -1,5 +1,11 @@
 #nav {
+    width: 0;
+    padding: 1;
+}
+
+#nav.open {
     width: 2fr;
+    padding: 1;
 }
 
 #code-container {
@@ -10,4 +16,8 @@
 
 .code:focus {
     border: none;
+}
+
+OpenDirectoryModal {
+    padding: 1;
 }

@@ -4,10 +4,10 @@ from textual.widgets import DirectoryTree
 
 
 class FilteredDirectoryTree(DirectoryTree):
-    CSS_PATH = '../style/directory_tree_filtered.tcss'
     show_root = False
     show_guides = False
     guide_depth = 2
+    ignore_files = ['.get']
     
     def filter_paths(self, paths: Iterable[Path]) -> Iterable[Path]:
-        return [path for path in paths if path.name != '.git']
+        return [path for path in paths if path.name not in self.ignore_files]
