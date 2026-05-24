@@ -1,0 +1,13 @@
+#nav {
+    width: 2fr;
+}
+
+#code-container {
+    width: 8fr;
+    height: 100%;
+    padding-top: 1;
+}
+
+.code:focus {
+    border: none;
+}
