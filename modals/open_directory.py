@@ -9,15 +9,15 @@ class OpenDirectoryModal(ModalScreen):
         yield Input(placeholder='Caminho absoluto...')
     
     def on_key(self, event: Key):
-        path = self.query_one(Input).value
-        if path == './':
-            self.notify('Caminho inválido', severity='warning')
-            return
-        
         if event.key == 'escape':
             self.dismiss(None)
             return
         
+        path = self.query_one(Input).value
+        if (path in ['./', '.'] or 'tidle' in path.lower()) and event.key == 'enter':
+            self.notify('Diretório probido', severity='warning')
+            return
+
         if event.key == 'enter':
             self.dismiss(path)
             return
