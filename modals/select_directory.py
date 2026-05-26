@@ -16,4 +16,3 @@ class SelectDirectory(ModalScreen):
         path = self.query_one(Input).value
         if event.key == 'enter':
             self.dismiss(path)
-            return

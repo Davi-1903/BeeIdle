@@ -6,6 +6,7 @@ from textual.containers import Horizontal, Vertical
 from textual.reactive import reactive
 from textual.widgets import DirectoryTree, Header, Footer, TabbedContent, Button
 
+from modals.confirm import ConfirmModal
 from modals.create_name_file import CreateNameFile
 from modals.open_directory import OpenDirectoryModal
 from modals.select_directory import SelectDirectory
@@ -22,7 +23,7 @@ class Tidle(App):
         Binding('ctrl+s', 'save_changes', 'Salvar alterações', show=True)
     ]
 
-    directory = reactive(None)
+    directory = reactive('../EduIA')
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
@@ -120,6 +121,29 @@ class Tidle(App):
                 self.create_file(name, path)
         
         self.push_screen(CreateNameFile(), get_name)
+    
+    @on(Button.Pressed, '#delete-btn')
+    def handle_delete_file(self):
+        def confirm_delete(confirmed: bool | None, current_pane: File, tabbed_content: TabbedContent):
+            if confirmed is not None:
+                self.__handle_delete_file_confirm(confirmed, current_pane, tabbed_content)
+        
+        tabbed_content = self.query_one('#code-container', TabbedContent)
+        current_pane = tabbed_content.active_pane
+        if isinstance(current_pane, File):
+            self.push_screen(ConfirmModal('Tem certeza que deseja deletar esse arquivo?'), lambda result: confirm_delete(result, current_pane, tabbed_content))
+    
+    def __handle_delete_file_confirm(self, confirmed: bool, current_pane: File | None = None, tabbed_content: TabbedContent | None = None):
+        if not confirmed or current_pane is None or tabbed_content is None:
+            return
+        
+        try:
+            Path(current_pane.path).unlink()
+            tabbed_content.remove_pane(current_pane.id) # type: ignore
+            self.notify(f'Arquivo {current_pane._title} deletado com sucesso')
+            self.render_directory()
+        except:
+            self.notify(f'Ocorreu um erro ao deletar o arquivo {current_pane._title}', severity='error')
 
 
 if __name__ == '__main__':

@@ -35,3 +35,35 @@ OpenDirectoryModal {
 #open-directory-btn {
     width: 100%;
 }
+
+ConfirmModal {
+    align: center middle;
+}
+
+ConfirmModal Grid {
+    width: 100%;
+    height: 100%;
+    align: center middle;
+}
+
+ConfirmModal .forms {
+    width: 40%;
+    height: 12;
+    min-width: 60;
+    min-height: 10;
+    padding: 2;
+    border: solid #303030;
+}
+
+ConfirmModal .forms Static {
+    margin-bottom: 2;
+}
+
+ConfirmModal .forms #confirm-btn,
+ConfirmModal .forms #cancel-btn {
+    width: 1fr;
+}
+
+ConfirmModal .forms #confirm-btn {
+    margin-right: 1;
+}
