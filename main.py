@@ -12,6 +12,7 @@ from modals.open_directory import OpenDirectoryModal
 from modals.select_directory import SelectDirectory
 from widgets.directory_tree_filtered import FilteredDirectoryTree
 from widgets.file import File
+from widgets.view_markdown import ViewMarkDown
 
 
 class Tidle(App):
@@ -20,7 +21,8 @@ class Tidle(App):
         Binding('ctrl+r', 'select_folder', 'Selecionar diretórios', show=True),
         Binding('ctrl+w', 'close_file', 'Fechar arquivo', show=True),
         Binding('ctrl+b', 'toggle_nav', 'Abrir/fechar árvore de arquivos', show=True),
-        Binding('ctrl+s', 'save_changes', 'Salvar alterações', show=True)
+        Binding('ctrl+s', 'save_changes', 'Salvar alterações', show=True),
+        Binding('ctrl+l', 'view_markdown', 'Visualizar markdown', show=True)
     ]
     AUTO_FOCUS = ''
 
@@ -53,11 +55,9 @@ class Tidle(App):
             tabbed_content.active = title.replace('.', '')
             return
         except:
-            pass
-
-        file_tab = File(content=content, title=title, path=path)
-        tabbed_content.add_pane(file_tab)
-        tabbed_content.active = title.replace('.', '')
+            file_tab = File(content=content, title=title, path=path)
+            tabbed_content.add_pane(file_tab)
+            tabbed_content.active = title.replace('.', '')
     
     def create_file(self, name_file: str, path: Path):
         if Path(path).joinpath(name_file).exists():
@@ -71,6 +71,18 @@ class Tidle(App):
                 self.render_directory()
         except:
             self.notify('Ocorreu um erro ao criar o arquivo', severity='error')
+    
+    def view_markdown(self, pane: File, title: str):
+        if pane.path.suffix != '.md':
+            return
+        
+        tabbed_content = self.query_one('#code-container', TabbedContent)
+        try:
+            file_tab = ViewMarkDown(content=pane.content, title=title)
+            tabbed_content.add_pane(file_tab)
+            tabbed_content.active = title.replace('.', '')
+        except:
+            tabbed_content.active = f'view-{title.replace(".", "")}'
 
     # ==================================== ACTIONS ====================================
     @on(Button.Pressed, '#open-directory-btn')
@@ -97,6 +109,12 @@ class Tidle(App):
         current_pane = tabbed_content.active_pane
         if isinstance(current_pane, File):
             current_pane.save_changes()
+    
+    def action_view_markdown(self):
+        tabbed_content = self.query_one('#code-container', TabbedContent)
+        current_pane = tabbed_content.active_pane
+        if isinstance(current_pane, File):
+            self.view_markdown(current_pane, current_pane.original_title)
     
     # ==================================== EVENTS ====================================
     @on(DirectoryTree.FileSelected)
