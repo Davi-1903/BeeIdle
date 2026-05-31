@@ -16,7 +16,7 @@ class OpenDirectoryModal(ModalScreen):
             return
         
         path = self.query_one(Input).value
-        if (path in ['./', '.'] or 'tidle' in path.lower()) and event.key == 'enter':
+        if (path in ['./', '.'] or 'beeidle' in path.lower()) and event.key == 'enter':
             self.notify('Diretório probido', severity='warning')
             return
 

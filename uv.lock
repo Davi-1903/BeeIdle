@@ -3,6 +3,17 @@ revision = 3
 requires-python = ">=3.13"
 
 [[package]]
+name = "beeidle"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "textual", extra = ["syntax"] },
+]
+
+[package.metadata]
+requires-dist = [{ name = "textual", extras = ["syntax"], specifier = ">=8.2.7" }]
+
+[[package]]
 name = "linkify-it-py"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -119,17 +130,6 @@ syntax = [
     { name = "tree-sitter-xml" },
     { name = "tree-sitter-yaml" },
 ]
-
-[[package]]
-name = "tidle"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "textual", extra = ["syntax"] },
-]
-
-[package.metadata]
-requires-dist = [{ name = "textual", extras = ["syntax"], specifier = ">=8.2.7" }]
 
 [[package]]
 name = "tree-sitter"

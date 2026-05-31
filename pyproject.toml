@@ -1,5 +1,5 @@
 [project]
-name = "tidle"
+name = "beeidle"
 version = "0.1.0"
 description = "Editor de código pelo terminal"
 readme = "README.md"

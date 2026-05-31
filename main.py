@@ -15,7 +15,7 @@ from widgets.file import File
 from widgets.view_markdown import ViewMarkDown
 
 
-class Tidle(App):
+class BeeIdle(App):
     CSS_PATH = 'styles/app.tcss'
     BINDINGS = [
         Binding('ctrl+r', 'select_folder', 'Selecionar diretórios', show=True),
@@ -167,4 +167,4 @@ class Tidle(App):
 
 
 if __name__ == '__main__':
-    Tidle().run()
+    BeeIdle().run()
