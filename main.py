@@ -22,6 +22,7 @@ class Tidle(App):
         Binding('ctrl+b', 'toggle_nav', 'Abrir/fechar árvore de arquivos', show=True),
         Binding('ctrl+s', 'save_changes', 'Salvar alterações', show=True)
     ]
+    AUTO_FOCUS = ''
 
     directory = reactive(None)
 
@@ -113,6 +114,7 @@ class Tidle(App):
             if path is not None:
                 self.__handle_create_file_get_name(path)
         
+        self.query_one('#create-btn').blur()
         self.push_screen(SelectDirectory(), create_file)
     
     def __handle_create_file_get_name(self, path: Path):

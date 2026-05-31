@@ -5,8 +5,10 @@ from textual.widgets import Input
 
 
 class SelectDirectory(ModalScreen):
+    AUTO_FOCUS = '#select-input'
+    
     def compose(self) -> ComposeResult:
-        yield Input(placeholder='Caminho absoluto...')
+        yield Input(id='select-input', placeholder='Caminho absoluto...')
     
     def on_key(self, event: Key):
         if event.key == 'escape':

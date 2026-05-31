@@ -5,8 +5,10 @@ from textual.widgets import Input
 
 
 class CreateNameFile(ModalScreen):
+    AUTO_FOCUS = '#file-input'
+    
     def compose(self) -> ComposeResult:
-        yield Input(placeholder='Nome do arquivo...')
+        yield Input(id='file-input', placeholder='Nome do arquivo...')
     
     def on_key(self, event: Key):
         if event.key == 'escape':

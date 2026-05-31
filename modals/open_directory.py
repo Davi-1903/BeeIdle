@@ -4,9 +4,11 @@ from textual.screen import ModalScreen
 from textual.widgets import Input
 
 
-class OpenDirectoryModal(ModalScreen):    
+class OpenDirectoryModal(ModalScreen):
+    AUTO_FOCUS = '#path-input'
+    
     def compose(self) -> ComposeResult:
-        yield Input(placeholder='Caminho absoluto...')
+        yield Input(id='path-input', placeholder='Caminho absoluto...')
     
     def on_key(self, event: Key):
         if event.key == 'escape':
