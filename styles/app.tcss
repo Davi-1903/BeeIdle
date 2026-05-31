@@ -10,8 +10,14 @@
 }
 
 #actions-content {
+    width: 1fr;
     height: auto;
     margin-bottom: 1;
+}
+
+#actions-content Button {
+    width: 50%;
+    min-width: 0;
 }
 
 #actions-content #create-btn {

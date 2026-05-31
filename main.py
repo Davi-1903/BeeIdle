@@ -23,7 +23,7 @@ class Tidle(App):
         Binding('ctrl+s', 'save_changes', 'Salvar alterações', show=True)
     ]
 
-    directory = reactive('../EduIA')
+    directory = reactive(None)
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
@@ -88,7 +88,7 @@ class Tidle(App):
             tabbed_content.remove_pane(current_pane.id) # type: ignore
     
     def action_toggle_nav(self):
-        sidebar = self.query_one('#sidebar-content')
+        sidebar = self.query_one('#sidebar-container')
         sidebar.toggle_class('open')
     
     def action_save_changes(self):
