@@ -26,7 +26,7 @@ class BeeIdle(App):
     ]
     AUTO_FOCUS = ''
 
-    directory = reactive(None)
+    directory: reactive[Path | None] = reactive(None)
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
@@ -89,10 +89,10 @@ class BeeIdle(App):
     def action_select_folder(self):
         def set_directory(path: str | None):
             if path is not None:
-                self.directory = path
+                self.directory = Path(path)
                 self.render_directory()
         
-        self.push_screen(OpenDirectoryModal(), set_directory)
+        self.push_screen(OpenDirectoryModal(self.directory), set_directory)
     
     def action_close_file(self):
         tabbed_content = self.query_one('#code-container', TabbedContent)
@@ -158,7 +158,7 @@ class BeeIdle(App):
             return
         
         try:
-            Path(current_pane.path).unlink()
+            current_pane.path.unlink()
             tabbed_content.remove_pane(current_pane.id) # type: ignore
             self.notify(f'Arquivo {current_pane._title} deletado com sucesso')
             self.render_directory()
