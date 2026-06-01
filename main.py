@@ -90,6 +90,7 @@ class BeeIdle(App):
         def set_directory(path: str | None):
             if path is not None:
                 self.directory = Path(path)
+                self.sub_title = self.directory.name
                 self.render_directory()
         
         self.push_screen(OpenDirectoryModal(self.directory), set_directory)
