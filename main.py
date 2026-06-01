@@ -134,7 +134,7 @@ class BeeIdle(App):
                 self.__handle_create_file_get_name(path)
         
         self.query_one('#create-btn').blur()
-        self.push_screen(SelectDirectory(), create_file)
+        self.push_screen(SelectDirectory(self.directory), create_file)
     
     def __handle_create_file_get_name(self, path: Path):
         def get_name(name: str | None):
