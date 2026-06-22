@@ -1,6 +1,6 @@
 <p align="center">
     <img src="./logo.png" alt="Logo" width="400">
-    <h3 style="text-align: center">Editor de código feito pelo terminal</h3>
+    <h3 align="center">Editor de código feito pelo terminal</h3>
 </p>
 
 ---
