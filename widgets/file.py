@@ -11,16 +11,10 @@ class File(TabPane):
         self.content = content
         self.original_title = title
         self.is_diferent = False
-    
+
     def compose(self) -> ComposeResult:
-        yield TextArea.code_editor(
-            self.content,
-            classes='code',
-            language='python',
-            theme='css',
-            compact=True
-        )
-    
+        yield TextArea.code_editor(self.content, classes='code', language='python', theme='css', compact=True)
+
     def save_changes(self):
         if self.is_diferent:
             new_content = self.query_one(TextArea).text
@@ -29,13 +23,13 @@ class File(TabPane):
             self.change_title(self.is_diferent)
             with open(self.path, 'w', encoding='utf-8') as f:
                 f.write(self.content)
-    
+
     def change_title(self, is_diferent: bool):
         try:
             tab_button = self.screen.query_one(f'#--content-tab-{self.id}', Tab)
             tab_button.label = f'{self.original_title}*' if is_diferent else self.original_title
             tab_button.refresh()
-        except:
+        except Exception:
             pass
 
     @on(TextArea.Changed)

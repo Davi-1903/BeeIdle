@@ -7,6 +7,7 @@
     width: 2fr;
     height: 1fr;
     padding: 1;
+    min-width: 30;
 }
 
 #actions-content {
@@ -72,4 +73,30 @@ ConfirmModal .forms #cancel-btn {
 
 ConfirmModal .forms #confirm-btn {
     margin-right: 1;
+}
+
+WelcomePane {
+    align: center middle;
+}
+
+WelcomePane > Vertical {
+    align: center middle;
+    max-width: 80;
+    width: 80%;
+}
+
+WelcomePane > Vertical * {
+    width: auto;
+}
+
+WelcomePane > Vertical > Container {
+    background: green;
+    height: auto;
+    width: 80%;
+}
+
+WelcomePane > Vertical Button {
+    margin-top: 1;
+    padding: 0 2;
+    margin-left: 15;
 }

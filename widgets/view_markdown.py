@@ -9,7 +9,7 @@ class ViewMarkDown(TabPane):
         self.content = content
         self.original_title = title
         self.is_diferent = False
-    
+
     def compose(self) -> ComposeResult:
         with ScrollableContainer():
             yield MarkdownViewer(

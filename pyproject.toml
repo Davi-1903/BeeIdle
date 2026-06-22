@@ -7,3 +7,14 @@ requires-python = ">=3.13"
 dependencies = [
     "textual[syntax]>=8.2.7",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.18",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "single"

@@ -1,4 +1,8 @@
 {
-	"python.analysis.autoImportCompletions": true,
-	"python.analysis.typeCheckingMode": "standard"
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "standard",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    }
 }
