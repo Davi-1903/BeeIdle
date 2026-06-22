@@ -1,9 +1,12 @@
-# 🐝 BeeIdle
+<p align="center">
+    <img src="./logo.png" alt="Logo" width="400">
+    <h3 style="text-align: center">Editor de código feito pelo terminal</h3>
+</p>
 
-Editor de código feito pelo terminal com [`Textual`](https://textual.textualize.io/)
+---
 
 <p align="center">
-    <img src="./image.png" alt="Imagem do editor" width="600">
+    <img src="image.png" alt="Imagem do editor" width="600">
 </p>
 
 ## 🚀 Como executar
@@ -30,3 +33,6 @@ Editor de código feito pelo terminal com [`Textual`](https://textual.textualize
     # --------------- ou ---------------
     python main.py
     ```
+
+> [!TIP]
+> Use ambiente virtual 😉
