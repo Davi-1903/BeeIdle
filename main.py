@@ -101,6 +101,7 @@ class BeeIdle(App):
             if path is None:
                 return
 
+            self.query_one('#code-container', TabbedContent).clear_panes()
             self.directory = Path(path)
             self.sub_title = self.directory.name
             self.render_directory()
@@ -109,6 +110,8 @@ class BeeIdle(App):
             sidebar = self.query_one('#sidebar-container')
             if 'open' not in sidebar.classes:
                 sidebar.add_class('open')
+
+            self.markdown_on_path()
 
         self.push_screen(OpenDirectoryModal(self.directory), set_directory)
 
@@ -187,6 +190,20 @@ class BeeIdle(App):
             self.render_directory()
         except Exception:
             self.notify(f'Ocorreu um erro ao deletar o arquivo {current_pane._title}', severity='error')
+
+    def markdown_on_path(self):
+        if self.directory is None:
+            return
+
+        try:
+            path = list(self.directory.glob(r'README.md'))[0]
+        except IndexError:
+            return
+
+        with open(path, encoding='utf-8') as f:
+            content = f.read()
+            file = File(content=content, title=path.name, path=path)
+            self.view_markdown(file, file.original_title)
 
 
 if __name__ == '__main__':
