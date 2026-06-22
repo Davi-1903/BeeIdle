@@ -79,24 +79,25 @@ WelcomePane {
     align: center middle;
 }
 
-WelcomePane > Vertical {
+WelcomePane > ScrollableContainer {
     align: center middle;
     max-width: 80;
     width: 80%;
 }
 
-WelcomePane > Vertical * {
+WelcomePane > ScrollableContainer * {
     width: auto;
 }
 
-WelcomePane > Vertical > Container {
+WelcomePane > ScrollableContainer > Container {
     background: green;
     height: auto;
     width: 80%;
 }
 
-WelcomePane > Vertical Button {
+WelcomePane > ScrollableContainer Button {
     margin-top: 1;
     padding: 0 2;
     margin-left: 15;
+    margin-bottom: 3;
 }

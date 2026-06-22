@@ -1,6 +1,6 @@
 from typing import Callable
 from textual.app import ComposeResult
-from textual.containers import Vertical
+from textual.containers import ScrollableContainer
 from textual.widgets import Static, TabPane, Button
 
 
@@ -34,7 +34,7 @@ class WelcomePane(TabPane):
         self.action = action_select_folder
 
     def compose(self) -> ComposeResult:
-        with Vertical():
+        with ScrollableContainer():
             yield Static(self.CONTENT)
             yield Button('Open a project', variant='primary')
 
